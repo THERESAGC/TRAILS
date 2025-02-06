@@ -189,55 +189,70 @@ const NewTrainingRequest = () => {
                     </FormControl>
                 </Grid>
                 </Grid>
-                <Grid container spacing={2} style={{ marginBottom: '1rem' }}>
+                             <Grid container spacing={2} style={{ marginBottom: '1rem' }}>
             <Grid item xs={12} md={4}>
               <FormControl fullWidth>
               <Typography style={{ fontSize: '12px' }}>Provide other skills information in detail</Typography>
             
-                <TextField
-                  variant="outlined"
-                  multiline
-                  rows={4}
+                     <ReactQuill
+                  value={otherskill}
+                  onChange={handleOtherSkill}
+                  modules={{
+                    toolbar: [
+                      ["bold", "italic", "underline"], // Formatting options
+                    
+                      ["clean"], // Remove formatting
+                    ],
+                  }}
                   placeholder="Other Skill Details should be less than 1000 Words"
-                  InputProps={{
-                        style: { fontSize: '12px' },
-                    }}
-                    />
+                  style={{ height: "150px" }}
+                />
                 </FormControl>
                 </Grid>
                 <Grid item xs={12} md={4}>
                 <FormControl fullWidth>
                 <Typography style={{ fontSize: '12px' }}>Suggest completion criteria</Typography>
-                   
-                    <TextField
-                    variant="outlined"
-                    multiline
-                    rows={4}
-                    placeholder="Suggest Completion Criteria should be less than 1000 Words"
-                    InputProps={{
-                        style: { fontSize: '12px' },
-                    }}
-                    />
+
+          <ReactQuill
+                  value={completioncriteria}
+                  onChange={handleCompletionCriteria}
+                  modules={{
+                    toolbar: [
+                      ["bold", "italic", "underline"], // Formatting options
+                    
+                      ["clean"], // Remove formatting
+                    ],
+                  }}
+                  placeholder="Suggest Completion Criteria should be less than 1000 Words"
+                  style={{ height: "150px" }}
+                />
                 </FormControl>
                 </Grid>
                 <Grid item xs={12} md={4}>
                 <FormControl fullWidth>
                 <Typography style={{ fontSize: '12px' }}>Comments</Typography>
-                    <InputLabel style={{ fontSize: '12px' }}></InputLabel>
-                    <TextField
-                    variant="outlined"
-                    multiline
-                    rows={4}
-                    placeholder="Comment should be less than 150 Words"
-                    InputProps={{
-                        style: { fontSize: '12px' },
-                    }}
-                    />
+                   
+                    <ReactQuill
+                  value={comment}
+                  onChange={handleComments}
+                  modules={{
+                    toolbar: [
+                      ["bold", "italic", "underline"], // Formatting options
+                    
+                      ["clean"], // Remove formatting
+                    ],
+                  }}
+                  placeholder="Comments should be less than 350 Words"
+                  style={{ height: "150px" }}
+                />
                 </FormControl>
                 </Grid>
             </Grid>
-           
-           x
+            <Box display="flex" justifyContent="flex-end" style={{ marginTop: '4rem' }}>
+              <Button variant="contained" color="primary">
+               SUBMIT
+              </Button>
+              </Box>
         </Paper>
       </Paper>      
     </Container>
