@@ -1,29 +1,9 @@
 import React from "react";
-import {
-  Container,
-  Paper,
-  Typography,
-  TextField,
-  Select,
-  MenuItem,
-  FormControl,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
-  Grid,
-  Button,
-  Box,
-  Divider,
-  TableCell,
-  TableContainer,
-  TableBody,
-  TableHead,
-  TableRow,
-  Table,
-  IconButton,
-  Avatar,
-  Autocomplete,
-} from "@mui/material";
+import {  Container,  Paper,  Typography,  TextField,  Select,
+  MenuItem,  FormControl,  RadioGroup,  FormControlLabel,  Radio,
+  Grid,  Button,  Box,  Divider,  TableCell,  TableContainer,
+  TableBody,  TableHead,  TableRow,  Table,  IconButton,
+  Avatar,  Autocomplete,} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled } from "@mui/material/styles";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -35,6 +15,7 @@ import { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import TablePagination from "@mui/material/TablePagination";
 import "react-quill/dist/quill.snow.css";
+import "./NewTrainingRequest.css";
 
 const CustomRadio = styled(Radio)({
   "& .MuiSvgIcon-root": {
@@ -122,11 +103,11 @@ const NewTrainingRequest = () => {
 
   const addEmployee = () => {
     if (!emails.trim()) {
-      alert("Please enter at least one email.");
+      setInvalidEmails(["Please enter at least one email."]);
       return;
     }
 
-    const emailList = emails.split(",").map((email) => email.trim()); // Split and trim
+    const emailList = emails.split(",").map((email) => email.trim());
     const validEmployees = [];
     const invalidEmails = [];
 
@@ -149,8 +130,8 @@ const NewTrainingRequest = () => {
       setEmployees((prev) => [...prev, ...validEmployees]);
     }
     setInvalidEmails(invalidEmails);
-    setEmails(""); // Clear input field
-    setShowSummary(true); // Show the summary when the ADD button is clicked
+    setEmails("");
+    setShowSummary(true);
   };
 
   const removeEmployee = (id) => {
@@ -191,10 +172,10 @@ const NewTrainingRequest = () => {
               justifyContent="space-between"
               style={{ marginBottom: "1rem", backgroundColor: "white" }}
             >
-              <Typography color="textSecondary" style={{ fontSize: "14px" }}>
+              <Typography color="textSecondary" style={{ fontSize: "12px" }}>
                 Request ID/No: <span style={{ fontWeight: "bold" }}>#1234</span>
               </Typography>
-              <Typography color="textSecondary" style={{ fontSize: "14px" }}>
+              <Typography color="textSecondary" style={{ fontSize: "12px" }}>
                 Requested By:{" "}
                 <span style={{ fontWeight: "bold" }}>Joe Maison</span>
               </Typography>
@@ -206,7 +187,7 @@ const NewTrainingRequest = () => {
               <Typography
                 variant="h6"
                 gutterBottom
-                style={{ fontSize: "14px", fontWeight: "bold" }}
+                style={{ fontSize: "12px", fontWeight: "bold" }}
               >
                 Training Details
               </Typography>
@@ -214,12 +195,11 @@ const NewTrainingRequest = () => {
                 container
                 spacing={3}
                 style={{
-                  marginBottom: "1rem",
-                  marginTop: "1rem",
+                  marginBottom: "2rem",
                   justifyContent: "space-between",
                 }}
               >
-                <Grid item xs={12} md={4}>
+                <Grid item xs={12} md={4} >
                   <Box
                     display="flex"
                     flexDirection="column"
@@ -227,15 +207,15 @@ const NewTrainingRequest = () => {
                     height="100%"
                   >
                     <FormControl fullWidth>
-                      <Typography style={{ fontSize: "14px" }}>
-                        Request on behalf{" "}
+                      <Typography style={{ fontSize: "12px",marginBottom:"0.5rem"}}>
+                        Request on behalf{" "} 
                         <span style={{ color: "red" }}>*</span>
                       </Typography>
                       <TextField
                         variant="outlined"
                         defaultValue="Joe Maison"
                         InputProps={{
-                          style: { height: "45px", fontSize: "14px" },
+                          style: {  height: "30px", fontSize: "12px" },
                           endAdornment: <SearchIcon color="disabled" />,
                         }}
                       />
@@ -250,14 +230,14 @@ const NewTrainingRequest = () => {
                     justifyContent="space-between"
                     height="100%"
                   >
-                    <FormControl fullWidth>
-                      <Typography style={{ fontSize: "14px" }}>
+                    <FormControl fullWidth >
+                      <Typography style={{ fontSize: "12px" ,marginBottom:"0.5rem"}}>
                         Source <span style={{ color: "red" }}>*</span>
                       </Typography>
                       <Select
                         variant="outlined"
                         defaultValue=""
-                        style={{ height: "45px", fontSize: "14px" }}
+                        style={{  height: "30px", fontSize: "12px" }}
                       >
                         <MenuItem value="">
                           <em>Select Source</em>
@@ -275,14 +255,14 @@ const NewTrainingRequest = () => {
                     height="100%"
                   >
                     <FormControl fullWidth>
-                      <Typography style={{ fontSize: "14px" }}>
+                      <Typography style={{ fontSize: "12px",marginBottom:"0.5rem" }}>
                         Training Objective{" "}
                         <span style={{ color: "red" }}>*</span>
                       </Typography>
                       <Select
                         variant="outlined"
                         defaultValue=""
-                        style={{ height: "45px", fontSize: "14px" }}
+                        style={{  height: "30px", fontSize: "12px" }}
                       >
                         <MenuItem value="">
                           <em>Select Training Objective</em>
@@ -297,16 +277,16 @@ const NewTrainingRequest = () => {
                 variant="h6"
                 gutterBottom
                 style={{
-                  fontSize: "14px",
+                  fontSize: "12px",
                   fontWeight: "bold",
-                  marginTop: "1rem",
+                 
                 }}
               >
                 Training Purpose
               </Typography>
               <FormControl
                 component="fieldset"
-                style={{ marginBottom: "1rem" }}
+                
               >
                 <RadioGroup
                   row
@@ -317,7 +297,7 @@ const NewTrainingRequest = () => {
                     value="prospect"
                     control={<CustomRadio />}
                     label={
-                      <Typography style={{ fontSize: "14px" }}>
+                      <Typography style={{ fontSize: "12px" }}>
                         Prospect
                       </Typography>
                     }
@@ -326,7 +306,7 @@ const NewTrainingRequest = () => {
                     value="project"
                     control={<CustomRadio />}
                     label={
-                      <Typography style={{ fontSize: "14px" }}>
+                      <Typography style={{ fontSize: "12px" }}>
                         Project
                       </Typography>
                     }
@@ -339,21 +319,21 @@ const NewTrainingRequest = () => {
                   container
                   spacing={3}
                   style={{
-                    marginBottom: "1rem",
-                    marginTop: "1rem",
+                    marginBottom: "2rem",
+                   
                     alignItems: "center",
                   }}
                 >
                   <Grid item xs={12} md={6}>
                     <FormControl fullWidth>
-                      <Typography style={{ fontSize: "14px" }}>
+                      <Typography style={{ fontSize: "12px",marginBottom:"0.5rem" }}>
                         Prospect Name <span style={{ color: "red" }}>*</span>
                       </Typography>
                       <TextField
                         variant="outlined"
                         defaultValue="Joe Maison"
                         InputProps={{
-                          style: { height: "45px", fontSize: "14px" },
+                          style: { height: "30px", fontSize: "12px" },
                           endAdornment: <SearchIcon color="disabled" />,
                         }}
                       />
@@ -361,13 +341,13 @@ const NewTrainingRequest = () => {
                   </Grid>
                   <Grid item xs={12} md={6}>
                     <FormControl fullWidth>
-                      <Typography style={{ fontSize: "14px" }}>
+                      <Typography style={{ fontSize: "12px",marginBottom:"0.5rem" }}>
                         Service Division <span style={{ color: "red" }}>*</span>
                       </Typography>
                       <Select
                         variant="outlined"
                         defaultValue=""
-                        style={{ height: "45px", fontSize: "14px" }}
+                        style={{  height: "30px", fontSize: "12px" }}
                       >
                         <MenuItem value="tech-services">Tech Services</MenuItem>
                         <MenuItem value="content-services">
@@ -382,21 +362,21 @@ const NewTrainingRequest = () => {
                   container
                   spacing={3}
                   style={{
-                    marginBottom: "1rem",
-                    marginTop: "1rem",
+                    marginBottom: "2rem",
+                   
                     alignItems: "center",
                   }}
                 >
                   <Grid item xs={12} md={6}>
                     <FormControl fullWidth>
-                      <Typography style={{ fontSize: "14px" }}>
+                      <Typography style={{ fontSize: "12px",marginBottom:"0.5rem"  }}>
                         Project Name <span style={{ color: "red" }}>*</span>
                       </Typography>
                       <TextField
                         variant="outlined"
                         defaultValue="Joe Maison"
                         InputProps={{
-                          style: { height: "45px", fontSize: "14px" },
+                          style: { height: "30px", fontSize: "12px" },
                           endAdornment: <SearchIcon color="disabled" />,
                         }}
                       />
@@ -404,13 +384,13 @@ const NewTrainingRequest = () => {
                   </Grid>
                   <Grid item xs={12} md={6}>
                     <FormControl fullWidth>
-                      <Typography style={{ fontSize: "14px" }}>
+                      <Typography style={{ fontSize: "12px",marginBottom:"0.5rem" }}>
                         Service Division <span style={{ color: "red" }}>*</span>
                       </Typography>
                       <Select
                         variant="outlined"
                         defaultValue=""
-                        style={{ height: "45px", fontSize: "14px" }}
+                        style={{  height: "30px", fontSize: "12px" }}
                       >
                         <MenuItem value="">
                           <em>Select Service Division</em>
@@ -424,7 +404,7 @@ const NewTrainingRequest = () => {
               <Typography
                 variant="h6"
                 gutterBottom
-                style={{ fontSize: "14px", fontWeight: "bold" }}
+                style={{ fontSize: "12px", fontWeight: "bold" }}
               >
                 Employee Details
               </Typography>
@@ -441,7 +421,7 @@ const NewTrainingRequest = () => {
                     value="add"
                     control={<CustomRadio />}
                     label={
-                      <Typography style={{ fontSize: "14px" }}>
+                      <Typography style={{ fontSize: "12px" }}>
                         Add Employees
                       </Typography>
                     }
@@ -450,7 +430,7 @@ const NewTrainingRequest = () => {
                     value="open"
                     control={<CustomRadio />}
                     label={
-                      <Typography style={{ fontSize: "14px" }}>
+                      <Typography style={{ fontSize: "12px" }}>
                         Place an Open Request
                       </Typography>
                     }
@@ -465,14 +445,14 @@ const NewTrainingRequest = () => {
                     spacing={3}
                     style={{
                       marginBottom: "1rem",
-                      marginTop: "1rem",
+                      
                       alignItems: "center",
                     }}
                   >
                     <Grid item xs={12} md={4}>
                       <FormControl fullWidth>
                         <Typography
-                          style={{ fontSize: "14px", marginBottom: "5px" }}
+                          style={{ fontSize: "12px", marginBottom:"0.5rem"}}
                         >
                           Select Employee{" "}
                           <span style={{ color: "red" }}>*</span>
@@ -488,7 +468,7 @@ const NewTrainingRequest = () => {
                               placeholder="Type employee name"
                               InputProps={{
                                 ...params.InputProps,
-                                style: { height: "45px", fontSize: "14px" },
+                                style: {  height: "30px", fontSize: "12px" },
                               }}
                             />
                           )}
@@ -496,23 +476,23 @@ const NewTrainingRequest = () => {
                       </FormControl>
                     </Grid>
                     <Grid item xs={12} md={0.75}>
-                      <Typography>OR</Typography>
+                      <Typography style={{ fontSize: "14px"}}>OR</Typography>
                     </Grid>
                     <Grid item xs={12} md={4}>
                       <FormControl fullWidth>
                         <Typography
-                          style={{ fontSize: "14px", marginBottom: "5px" }}
-                        >
+                          style={{ fontSize: "12px", marginBottom:"0.5rem"}}
+                        >Enter comma(,) seperated email ids
                           <span style={{ color: "red" }}>*</span>
                         </Typography>
                         <TextField
-                          label="Enter Email by , separated"
+                          
                           variant="outlined"
                           type="text"
                           value={emails}
                           onChange={(e) => setEmails(e.target.value)}
                           InputProps={{
-                            style: { height: "45px", fontSize: "14px" },
+                            style: {  height: "30px", fontSize: "12px" },
                           }}
                         />
                       </FormControl>
@@ -524,259 +504,142 @@ const NewTrainingRequest = () => {
                         onClick={addEmployee}
                         color="primary"
                         style={{
-                          height: "45px",
-                          fontSize: "14px",
-                          minWidth: "100px",
+                          height: "35px",
+                          fontSize: "12px",
+                          minWidth: "75px",
                         }}
                       >
-                        ADD
+                        +
                       </Button>
                     </Grid>
                     {/* Employee Table */}
-                    <TableContainer
-                      component={Paper}
-                      style={{ padding: "16px", marginTop: "16px" }}
-                    >
-                      <Table size="small">
-                        {employees.length > 0 && (
-                          <TableHead sx={{ backgroundColor: "#e3f2fd" }}>
-                            <TableRow>
-                              <TableCell style={{ padding: "8px" }}>
-                                Employee ID
-                              </TableCell>
-                              <TableCell style={{ padding: "8px" }}>
-                                Name
-                              </TableCell>
-                              <TableCell style={{ padding: "8px" }}>
-                                Available From
-                              </TableCell>
-                              <TableCell style={{ padding: "8px" }}>
-                                Daily Bandwidth
-                              </TableCell>
-                              <TableCell style={{ padding: "8px" }}>
-                                Available on Weekend?
-                              </TableCell>
-                              <TableCell style={{ padding: "8px" }}>
-                                Actions
-                              </TableCell>
-                            </TableRow>
-                          </TableHead>
-                        )}
-                        <TableBody>
-                          {employees
-                            .slice(
-                              page * rowsPerPage,
-                              page * rowsPerPage + rowsPerPage
-                            )
-                            .map((employee) => (
-                              <React.Fragment key={employee.id}>
-                                <TableRow>
-                                  <TableCell style={{ padding: "8px" }}>
-                                    <Box
-                                      display="flex"
-                                      alignItems="center"
-                                      gap={1}
-                                    >
-                                      <Avatar src={employee.image} />
-                                      {employee.id}
-                                    </Box>
-                                  </TableCell>
-                                  <TableCell style={{ padding: "8px" }}>
-                                    {employee.name}
-                                  </TableCell>
-                                  <TableCell style={{ padding: "8px" }}>
-                                    <TextField
-                                      type="date"
-                                      value={employee.availableFrom}
-                                      onChange={(e) =>
-                                        updateEmployee(
-                                          employee.id,
-                                          "availableFrom",
-                                          e.target.value
-                                        )
-                                      }
-                                      size="small"
-                                    />
-                                  </TableCell>
-                                  <TableCell style={{ padding: "8px" }}>
-                                    <FormControl fullWidth>
-                                      <Select
-                                        value={employee.bandwidth}
-                                        onChange={(e) =>
-                                          updateEmployee(
-                                            employee.id,
-                                            "bandwidth",
-                                            e.target.value
-                                          )
-                                        }
-                                        size="small"
-                                      >
-                                        <MenuItem value="">Select</MenuItem>
-                                        <MenuItem value="2 Hours">
-                                          2 Hours
-                                        </MenuItem>
-                                        <MenuItem value="4 Hours">
-                                          4 Hours
-                                        </MenuItem>
-                                        <MenuItem value="6 Hours">
-                                          6 Hours
-                                        </MenuItem>
-                                        <MenuItem value="Full Day">
-                                          Full Day
-                                        </MenuItem>
-                                      </Select>
-                                    </FormControl>
-                                  </TableCell>
-                                  <TableCell style={{ padding: "8px" }}>
-                                    <RadioGroup
-                                      row
-                                      value={employee.weekend}
-                                      onChange={(e) =>
-                                        updateEmployee(
-                                          employee.id,
-                                          "weekend",
-                                          e.target.value
-                                        )
-                                      }
-                                    >
-                                      <FormControlLabel
-                                        value="Yes"
-                                        control={<Radio size="small" />}
-                                        label="Yes"
-                                      />
-                                      <FormControlLabel
-                                        value="No"
-                                        control={<Radio size="small" />}
-                                        label="No"
-                                      />
-                                    </RadioGroup>
-                                  </TableCell>
-                                  <TableCell style={{ padding: "8px" }}>
-                                    <IconButton
-                                      color="error"
-                                      onClick={() =>
-                                        removeEmployee(employee.id)
-                                      }
-                                      size="small"
-                                    >
-                                      <DeleteIcon />
-                                    </IconButton>
-                                  </TableCell>
-                                </TableRow>
-
-                                {/* Training Info (If exists) */}
-                                {employee.training && (
-                                  <TableRow>
-                                    <TableCell
-                                      colSpan={6}
-                                      sx={{
-                                        backgroundColor: "#fffbe6",
-                                        padding: 2,
-                                      }}
-                                    >
-                                      <Typography
-                                        fontWeight="bold"
-                                        color="warning.main"
-                                      >
-                                        1 training is already in progress
-                                      </Typography>
-                                      <Table size="small">
-                                        <TableHead>
-                                          <TableRow>
-                                            <TableCell
-                                              style={{ padding: "8px" }}
-                                            >
-                                              Req No:
-                                            </TableCell>
-                                            <TableCell
-                                              style={{ padding: "8px" }}
-                                            >
-                                              Project
-                                            </TableCell>
-                                            <TableCell
-                                              style={{ padding: "8px" }}
-                                            >
-                                              Objective
-                                            </TableCell>
-                                            <TableCell
-                                              style={{ padding: "8px" }}
-                                            >
-                                              Tech Stack
-                                            </TableCell>
-                                            <TableCell
-                                              style={{ padding: "8px" }}
-                                            >
-                                              Requested on
-                                            </TableCell>
-                                            <TableCell
-                                              style={{ padding: "8px" }}
-                                            >
-                                              Action
-                                            </TableCell>
-                                          </TableRow>
-                                        </TableHead>
-                                        <TableBody>
-                                          <TableRow>
-                                            <TableCell
-                                              style={{ padding: "8px" }}
-                                            >
-                                              {employee.training.reqNo}
-                                            </TableCell>
-                                            <TableCell
-                                              style={{ padding: "8px" }}
-                                            >
-                                              {employee.training.project}
-                                            </TableCell>
-                                            <TableCell
-                                              style={{ padding: "8px" }}
-                                            >
-                                              {employee.training.objective}
-                                            </TableCell>
-                                            <TableCell
-                                              style={{ padding: "8px" }}
-                                            >
-                                              {employee.training.techStack}
-                                            </TableCell>
-                                            <TableCell
-                                              style={{ padding: "8px" }}
-                                            >
-                                              {employee.training.requestedOn}
-                                            </TableCell>
-                                            <TableCell
-                                              style={{ padding: "8px" }}
-                                            >
-                                              <IconButton
-                                                color="error"
-                                                onClick={() =>
-                                                  removeEmployee(employee.id)
-                                                }
-                                                size="small"
-                                              >
-                                                <DeleteIcon />
-                                              </IconButton>
-                                            </TableCell>
-                                          </TableRow>
-                                        </TableBody>
-                                      </Table>
-                                    </TableCell>
-                                  </TableRow>
-                                )}
-                              </React.Fragment>
-                            ))}
-                        </TableBody>
-                      </Table>
-                      {employees.length > 0 && (
-                        <TablePagination
-                          rowsPerPageOptions={[5, 10, 25]}
-                          component="div"
-                          count={employees.length}
-                          rowsPerPage={rowsPerPage}
-                          page={page}
-                          onPageChange={handleChangePage}
-                          onRowsPerPageChange={handleChangeRowsPerPage}
-                        />
-                      )}
-                    </TableContainer>
+                    <TableContainer component={Paper} style={{ padding: "16px", marginTop: "16px" }}>
+  <Table size="small">
+    {employees.length > 0 && (
+      <TableHead sx={{ backgroundColor: "#e3f2fd" }}>
+        <TableRow>
+          <TableCell style={{ padding: "8px", fontWeight: "bold" }}>
+            Employee ID
+          </TableCell>
+          <TableCell style={{ padding: "8px", fontWeight: "bold" }}>
+            Name
+          </TableCell>
+          <TableCell style={{ padding: "8px", fontWeight: "bold" }}>
+            Available From
+          </TableCell>
+          <TableCell style={{ padding: "8px", fontWeight: "bold" }}>
+            Daily Bandwidth
+          </TableCell>
+          <TableCell style={{ padding: "8px", fontWeight: "bold" }}>
+            Available on Weekend?
+          </TableCell>
+          <TableCell style={{ padding: "8px", fontWeight: "bold" }}>
+            Actions
+          </TableCell>
+        </TableRow>
+      </TableHead>
+    )}
+    <TableBody>
+      {employees.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((employee) => (
+        <React.Fragment key={employee.id}>
+          <TableRow>
+            <TableCell style={{ padding: "8px" }}>
+              <Box display="flex" alignItems="center" gap={1}>
+                <Avatar src={employee.image} />
+                {employee.id}
+              </Box>
+            </TableCell>
+            <TableCell style={{ padding: "8px" }}>{employee.name}</TableCell>
+            <TableCell style={{ padding: "8px" }}>
+              <TextField
+                type="date"
+                value={employee.availableFrom}
+                onChange={(e) => updateEmployee(employee.id, "availableFrom", e.target.value)}
+                size="small"
+              />
+            </TableCell>
+            <TableCell style={{ padding: "8px" }}>
+              <FormControl fullWidth>
+                <Select
+                  value={employee.bandwidth}
+                  onChange={(e) => updateEmployee(employee.id, "bandwidth", e.target.value)}
+                  size="small"
+                >
+                  <MenuItem value="">Select</MenuItem>
+                  <MenuItem value="2 Hours">2 Hours</MenuItem>
+                  <MenuItem value="4 Hours">4 Hours</MenuItem>
+                  <MenuItem value="6 Hours">6 Hours</MenuItem>
+                  <MenuItem value="Full Day">Full Day</MenuItem>
+                </Select>
+              </FormControl>
+            </TableCell>
+            <TableCell style={{ padding: "8px" }}>
+              <RadioGroup
+                row
+                value={employee.weekend}
+                onChange={(e) => updateEmployee(employee.id, "weekend", e.target.value)}
+              >
+                <FormControlLabel value="Yes" control={<Radio size="small" />} label="Yes" />
+                <FormControlLabel value="No" control={<Radio size="small" />} label="No" />
+              </RadioGroup>
+            </TableCell>
+            <TableCell style={{ padding: "8px" }}>
+              <IconButton color="error" onClick={() => removeEmployee(employee.id)} size="small">
+                <DeleteIcon />
+              </IconButton>
+            </TableCell>
+          </TableRow>
+          {employee.training && (
+            <TableRow>
+              <TableCell colSpan={6} sx={{ backgroundColor: "#fffbe6", padding: 2 }}>
+                <Typography fontWeight="bold">
+                  1 training is already in progress
+                </Typography>
+                <Table size="small">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell style={{ padding: "8px", fontWeight: "bold" }}>Req No:</TableCell>
+                      <TableCell style={{ padding: "8px", fontWeight: "bold" }}>Project</TableCell>
+                      <TableCell style={{ padding: "8px", fontWeight: "bold" }}>Objective</TableCell>
+                      <TableCell style={{ padding: "8px", fontWeight: "bold" }}>Tech Stack</TableCell>
+                      <TableCell style={{ padding: "8px", fontWeight: "bold" }}>Requested on</TableCell>
+                      <TableCell style={{ padding: "8px", fontWeight: "bold" }}>Action</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell style={{ padding: "8px" }}>{employee.training.reqNo}</TableCell>
+                      <TableCell style={{ padding: "8px" }}>{employee.training.project}</TableCell>
+                      <TableCell style={{ padding: "8px" }}>{employee.training.objective}</TableCell>
+                      <TableCell style={{ padding: "8px" }}>{employee.training.techStack}</TableCell>
+                      <TableCell style={{ padding: "8px" }}>{employee.training.requestedOn}</TableCell>
+                      <TableCell style={{ padding: "8px" }}>
+                        <IconButton color="error" onClick={() => removeEmployee(employee.id)} size="small">
+                          <DeleteIcon />
+                        </IconButton>
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TableCell>
+            </TableRow>
+          )}
+        </React.Fragment>
+      ))}
+    </TableBody>
+  </Table>
+  {employees.length > 0 && (
+    <TablePagination
+      rowsPerPageOptions={[5, 10, 25]}
+      component="div"
+      count={employees.length}
+      rowsPerPage={rowsPerPage}
+      page={page}
+      onPageChange={handleChangePage}
+      onRowsPerPageChange={handleChangeRowsPerPage}
+    />
+  )}
+</TableContainer>
                     {showSummary && (
                       <Box mt={2} display="flex" justifyContent="space-between">
                         <Typography variant="body1">
@@ -798,11 +661,11 @@ const NewTrainingRequest = () => {
                   <Grid
                     container
                     spacing={3}
-                    style={{ marginBottom: "1rem", marginTop: "1rem" }}
+                    style={{ marginBottom: "1rem" }}
                   >
                     <Grid item xs={12} md={6}>
                       <FormControl fullWidth>
-                        <Typography style={{ fontSize: "14px" }}>
+                        <Typography style={{ fontSize: "12px" }}>
                           Number of People to be Trained{" "}
                           <span style={{ color: "red" }}>*</span>
                         </Typography>
@@ -810,20 +673,20 @@ const NewTrainingRequest = () => {
                           variant="outlined"
                           type="number"
                           InputProps={{
-                            style: { height: "45px", fontSize: "14px" },
+                            style: {  height: "30px", fontSize: "12px" },
                           }}
                         />
                       </FormControl>
                     </Grid>
                     <Grid item xs={12} md={6}>
                       <FormControl fullWidth>
-                        <Typography style={{ fontSize: "14px" }}>
+                        <Typography style={{ fontSize: "12px" }}>
                           Employee Level <span style={{ color: "red" }}>*</span>
                         </Typography>
                         <Select
                           variant="outlined"
                           defaultValue=""
-                          style={{ height: "45px", fontSize: "14px" }}
+                          style={{  height: "30px", fontSize: "12px" }}
                         >
                           <MenuItem value="">
                             <em>Select Employee Level</em>
@@ -841,61 +704,60 @@ const NewTrainingRequest = () => {
               <Typography
                 variant="h6"
                 gutterBottom
-                style={{ fontSize: "14px", fontWeight: "bold" }}
+                style={{ fontSize: "12px", fontWeight: "bold" }}
               >
                 Skill Details
               </Typography>
               <Grid
                 container
                 spacing={3}
-                style={{ marginBottom: "1rem", marginTop: "1rem" }}
+                style={{ marginBottom: "1rem",}}
                 direction="row"
                 alignItems="center"
               >
                 <Grid item xs={4}>
-                  <FormControl fullWidth style={{ marginBottom: "1rem" }}>
-                    <Typography
-                      style={{
-                        fontSize: "14px",
-                        display: "flex",
-                        alignItems: "center",
-                        height: "45px",
-                      }}
-                    >
-                      Expected completion Timeline{" "}
-                      <span style={{ color: "red" }}>*</span>
-                    </Typography>
-                    <DatePicker
-                      value={selectedDate}
-                      onChange={(newValue) => setSelectedDate(newValue)}
-                      renderInput={(params) => (
-                        <TextField
-                          {...params}
-                          variant="outlined"
-                          InputProps={{
-                            ...params.InputProps,
-                            style: { height: "45px", fontSize: "14px" },
-                          }}
-                          InputLabelProps={{
-                            style: { fontSize: "14px" },
-                          }}
-                          style={{
-                            height: "45px",
-                            fontSize: "14px",
-                          }}
-                        />
-                      )}
-                    />
-                  </FormControl>
+                <FormControl fullWidth style={{ marginBottom: "1rem" }}>
+  <Typography
+    style={{
+      fontSize: "12px",
+      display: "flex",
+      alignItems: "center",
+      marginBottom: "0.5rem",
+    }}
+  >
+    Expected completion Timeline <span style={{ color: "red" }}>*</span>
+  </Typography>
+  <DatePicker style={{ height: "70px" }}
+    value={selectedDate}
+    onChange={(newValue) => setSelectedDate(newValue)}
+    renderInput={(params) => (
+      <TextField
+        {...params}
+        variant="outlined"
+        InputProps={{
+          ...params.InputProps,
+          style: { height: "30px", fontSize: "12px" },
+        }}
+        InputLabelProps={{
+          style: { fontSize: "12px" },
+        }}
+        style={{
+          height: "30px",
+          fontSize: "12px",
+        }}
+      />
+    )}
+  />
+</FormControl>
                 </Grid>
                 <Grid item xs={4}>
                   <FormControl fullWidth style={{ marginBottom: "1rem" }}>
                     <Typography
                       style={{
-                        fontSize: "14px",
+                        fontSize: "12px",
                         display: "flex",
                         alignItems: "center",
-                        height: "45px",
+                       marginBottom:"0.5rem"
                       }}
                     >
                       Request for - Tech Stack / Area{" "}
@@ -904,7 +766,7 @@ const NewTrainingRequest = () => {
                     <Select
                       variant="outlined"
                       defaultValue=""
-                      style={{ height: "45px", fontSize: "14px" }}
+                      style={{  height: "30px", fontSize: "12px" }}
                     >
                       <MenuItem value="">
                         <em>Select Tech Stack</em>
@@ -916,10 +778,10 @@ const NewTrainingRequest = () => {
                   <FormControl fullWidth style={{ marginBottom: "1rem" }}>
                     <Typography
                       style={{
-                        fontSize: "14px",
+                        fontSize: "12px",
                         display: "flex",
                         alignItems: "center",
-                        height: "45px",
+                        marginBottom:"0.5rem"
                       }}
                     >
                       Request for - Primary Skill / Competency{" "}
@@ -928,7 +790,7 @@ const NewTrainingRequest = () => {
                     <Select
                       variant="outlined"
                       defaultValue=""
-                      style={{ height: "45px", fontSize: "14px" }}
+                      style={{ height: "30px", fontSize: "12px" }}
                     >
                       <MenuItem value="">
                         <em>Select Skill</em>
@@ -942,7 +804,7 @@ const NewTrainingRequest = () => {
                 <Grid item xs={12} md={4}>
                   <FormControl fullWidth>
                     <Typography
-                      style={{ fontSize: "14px", marginBottom: "0.5rem" }}
+                      style={{ fontSize: "12px", marginBottom: "0.5rem" }}
                     >
                       Provide other skills information{" "}
                       <span style={{ color: "red" }}>*</span>
@@ -961,7 +823,7 @@ const NewTrainingRequest = () => {
                 <Grid item xs={12} md={4}>
                   <FormControl fullWidth>
                     <Typography
-                      style={{ fontSize: "14px", marginBottom: "0.5rem" }}
+                      style={{ fontSize: "12px", marginBottom: "0.5rem" }}
                     >
                       Suggest completion criteria{" "}
                       <span style={{ color: "red" }}>*</span>
@@ -980,7 +842,7 @@ const NewTrainingRequest = () => {
                 <Grid item xs={12} md={4}>
                   <FormControl fullWidth>
                     <Typography
-                      style={{ fontSize: "14px", marginBottom: "0.5rem" }}
+                      style={{ fontSize: "12px", marginBottom: "0.5rem" }}
                     >
                       Comments
                     </Typography>
@@ -1005,8 +867,9 @@ const NewTrainingRequest = () => {
                 <Button
                   variant="outlined"
                   style={{
-                    height: "50px",
-                    fontSize: "16px",
+                    height: "35px",
+                    fontSize: "12px",
+                    minWidth: "75px",
                     color: "primary",
                     borderColor: "transparent",
                   }}
@@ -1016,10 +879,12 @@ const NewTrainingRequest = () => {
                 <Button
                   variant="contained"
                   style={{
-                    height: "50px",
-                    fontSize: "16px",
+                    
                     backgroundColor: "primary",
                     color: "white",
+                    height: "35px",
+                    fontSize: "12px",
+                    minWidth: "75px",
                   }}
                 >
                   Submit
