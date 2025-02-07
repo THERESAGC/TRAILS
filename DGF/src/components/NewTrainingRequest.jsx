@@ -22,6 +22,7 @@ import {
   Table,
   IconButton,
   Avatar,
+  Autocomplete,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled } from "@mui/material/styles";
@@ -88,9 +89,9 @@ const NewTrainingRequest = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [emails, setEmails] = useState('');
   const [employees, setEmployees] = useState([]);
-  const [showTable, setShowTable] = useState(false);
-  const [email, setEmail] = useState("");
 
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
+  
 
   const handleOtherSkill = (value) => {
     setOtherSkill(value);
@@ -111,6 +112,23 @@ const NewTrainingRequest = () => {
   const handleEmployeeDetailsOptionChange = (event) => {
     setEmployeeDetailsOption(event.target.value);
   };
+
+ 
+  // const employees1 = Object.keys(employeeDatabase).map(email => ({
+  //   label: employeeDatabase[email].name,
+  //   email: email,
+  // }));
+  // const handleInputChange = (event, value) => {
+   
+  //   const employee = employees1.find(emp => emp.label === value);
+  //   if (employee) {
+  //     setSelectedEmployee(employeeDatabase[employee.email]);
+  //   } else {
+  //     setSelectedEmployee(null);
+  //   }
+  //  };
+
+
 // Function to add an employee by email
 const addEmployee = () => {
   if (!emails.trim()) {
@@ -338,20 +356,34 @@ const updateEmployee = (id, field, value) => {
                 {employeeDetailsOption === "add" ? (
                   <Grid container spacing={3} style={{ marginBottom: "1rem", marginTop: "1rem", alignItems: "center" }}>
                     <Grid item xs={12} md={4}>
-                      <FormControl fullWidth>
-                      <Typography style={{ fontSize: "14px", marginBottom: "5px" }}>
-                          Select Employee <span style={{ color: "red" }}>*</span>
-                        </Typography>
-                        <TextField
-                          variant="outlined"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          InputProps={{
-                            style: { height: "45px", fontSize: "14px" },
-                            
-                          }}
-                        />
-                      </FormControl>
+                    <FormControl fullWidth>
+      <Typography style={{ fontSize: '14px', marginBottom: '5px' }}>
+        Select Employee <span style={{ color: 'red' }}>*</span>
+      </Typography>
+      <Autocomplete
+        options={employees}
+        getOptionLabel={(option) => option.label || ""}
+        // onInputChange={handleInputChange}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            variant="outlined"
+            placeholder="Type employee name"
+            InputProps={{
+              ...params.InputProps,
+              style: { height: '45px', fontSize: '14px' },
+            }}
+          />
+        )}
+      />
+      {selectedEmployee && (
+        <div>
+          <p>{selectedEmployee.name}</p>
+          <img src={selectedEmployee.image} alt={selectedEmployee.name} />
+        </div>
+      )}
+    </FormControl>
+                      
                     </Grid>
                           <Grid item xs={12} md={0.75}>
                           <Typography>
